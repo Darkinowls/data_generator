@@ -1,12 +1,12 @@
 import json
+import os
+from datetime import datetime
 
 import paho.mqtt.client as mqtt
 
-from home_data import House
-
 
 class Publisher:
-    TOPIC = "tv_house"
+    TOPIC = os.environ.get("TOPIC", "tv_house")
     BROKER = "broker.hivemq.com"
 
     def __init__(self):
@@ -14,5 +14,6 @@ class Publisher:
         self.client.connect(self.BROKER)
 
     def publish(self, message: dict):
+        message.update({"time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
         json_ = json.dumps(message)
         self.client.publish(self.TOPIC, json_)

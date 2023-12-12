@@ -1,9 +1,12 @@
+from datetime import datetime
+import random
+
+from time_generator import generate_temp_and_humidity, generate_tv, generate_is_broken
 
 
 class Room:
     def __init__(self):
-        self.temp = 20
-        self.humidity = 40
+        self.temp, self.humidity = generate_temp_and_humidity()
 
 
 class Kitchen(Room):
@@ -15,7 +18,7 @@ class Kitchen(Room):
 class Bedroom(Room):
     def __init__(self):
         super().__init__()
-        self.is_tv_on = False
+        self.is_tv_on = generate_tv(20, 22)
 
 
 class Bathroom(Room):
@@ -27,15 +30,24 @@ class Bathroom(Room):
 class LivingRoom(Room):
     def __init__(self):
         super().__init__()
-        self.is_tv_on = False
+        self.is_tv_on = generate_tv(18, 20)
 
 
 class Hall(Room):
     pass
 
 
+class Entrance(Room):
+    def __init__(self):
+        super().__init__()
+        self.is_broken = False
+
+
 class Balcony(Room):
-    pass
+
+    def __init__(self):
+        super().__init__()
+        self.is_broken = generate_is_broken()
 
 
 class Garage(Room):
