@@ -1,7 +1,8 @@
 from datetime import datetime
 import random
 
-from time_generator import generate_temp_and_humidity, generate_tv, generate_is_broken
+from time_generator import generate_temp_and_humidity, generate_tv, generate_is_broken, \
+    generate_temp_and_humidity_outdoor
 
 
 class Room:
@@ -48,6 +49,7 @@ class Balcony(Room):
     def __init__(self):
         super().__init__()
         self.is_broken = generate_is_broken()
+        self.temp, self.humidity = generate_temp_and_humidity_outdoor()
 
 
 class Garage(Room):

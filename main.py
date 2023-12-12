@@ -9,8 +9,4 @@ while True:
     sleep(1)
     h = House()
 
-
-
     p.publish(h.to_dict())
-
-
